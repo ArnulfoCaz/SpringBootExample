@@ -5,7 +5,7 @@ COPY pom.xml .
 RUN mvn dependency:resolve
 
 COPY src ./src
-RUN mvn package spring-boot:repackage
+RUN mvn clean package
 
 ADD build/libs/gs-spring-boot-0.1.0.jar app.jar
 ENV JAVA_OPTS=""
