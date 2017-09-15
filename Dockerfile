@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk
+FROM maven:3-jdk-8
 VOLUME /tmp
 
 COPY pom.xml .
