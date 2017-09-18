@@ -25,6 +25,8 @@ jobs:
                         - run:
                                 command: ~/google-cloud-sdk/bin/gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
                         - run:
+                                command: ~/google-cloud-sdk/bin/gcloud --quiet container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
+                        - run:
                                 command: ~/google-cloud-sdk/bin/gcloud components install kubectl
                         - run:
                                 command: docker build -t gcr.io/${GOOGLE_PROJECT_ID}/hello-spring:$CIRCLE_SHA1 .
