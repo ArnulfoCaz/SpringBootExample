@@ -33,4 +33,4 @@ jobs:
                         - run:
                                 command: ~/google-cloud-sdk/bin/gcloud docker -- push gcr.io/${GOOGLE_PROJECT_ID}/hello-spring:latest
                         - run:
-                                command: ~/google-cloud-sdk/bin/kubectl run hello-spring --image=gcr.io/${GOOGLE_PROJECT_ID/hello-spring:latest --port:8080
+                                command: ~/google-cloud-sdk/bin/kubectl run hello-spring --image=gcr.io/${GOOGLE_PROJECT_ID}/hello-spring:latest --port:8080
