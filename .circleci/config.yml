@@ -32,6 +32,12 @@ jobs:
                         - run:
                                 command: ~/google-cloud-sdk/bin/gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
                         - run:
-                                command: docker build -t us.gcr.io/${GOOGLE_PROJECT_ID}/hello-spring:$CIRCLE_SHA1 .
+                                command: ~/google-cloud-sdk/bin/gcloud components install kubectl
                         - run:
-                                command: docker tag us.gcr.io/${GOOGLE_PROJECT_ID}/hello-spring:$CIRCLE_SHA1 us.gcr.io/${GOOGLE_PROJECT_ID}/hello-google:latest
+                                command: docker build -t gcr.io/${GOOGLE_PROJECT_ID}/hello-spring:$CIRCLE_SHA1 .
+                        - run:
+                                command:
+                                  - docker tag gcr.io/${GOOGLE_PROJECT_ID}/hello-spring:$CIRCLE_SHA1 gcr.io/${GOOGLE_PROJECT_ID}/hello-google:latest
+                        - run:  
+                                command:
+                                  - ~/google-cloud-sdk/bin/kubectl run hello-spring --image=gcr.io/${GOOGLE_PROJECT_ID/hello-spring:latest --port:8080
