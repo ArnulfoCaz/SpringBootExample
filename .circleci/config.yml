@@ -9,13 +9,6 @@ jobs:
                 steps:
                         - checkout
                         - setup_remote_docker
-                        - run:
-                                name: Install Docker
-                                command: |
-                                  set -x
-                                  VER="17.03.0-ce"
-                                  curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
-                                  tar -xz -C /tmp -f /tmp/docker-$VER.tgz
                         - run: echo "Hello World"
                         - run:
                                 name: Install Google Cloud
@@ -36,8 +29,6 @@ jobs:
                         - run:
                                 command: docker build -t gcr.io/${GOOGLE_PROJECT_ID}/hello-spring:$CIRCLE_SHA1 .
                         - run:
-                                command:
-                                  - docker tag gcr.io/${GOOGLE_PROJECT_ID}/hello-spring:$CIRCLE_SHA1 gcr.io/${GOOGLE_PROJECT_ID}/hello-google:latest
-                        - run:  
-                                command:
-                                  - ~/google-cloud-sdk/bin/kubectl run hello-spring --image=gcr.io/${GOOGLE_PROJECT_ID/hello-spring:latest --port:8080
+                                command: docker tag gcr.io/${GOOGLE_PROJECT_ID}/hello-spring:$CIRCLE_SHA1 gcr.io/${GOOGLE_PROJECT_ID}/hello-google:latest
+                        - run:
+                                command: ~/google-cloud-sdk/bin/kubectl run hello-spring --image=gcr.io/${GOOGLE_PROJECT_ID/hello-spring:latest --port:8080
